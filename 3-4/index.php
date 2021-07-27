@@ -1,31 +1,15 @@
 <?php
-// 作成したpdo.phpを読み込む
+
 require_once("pdo.php");
-// 作成したgetData.phpを読み込む
 require_once("getData.php");
 
-// 関数connect()からPDOを取得する
 $pdo = connect();
 
-// getDataクラスをインスタンス化して取得
 $getData = new getData();
-// ユーザ情報インスタンス化して取得
-$users_data = $getData->getUserData();
-// 記事情報インスタンス化して取得
-$post_data = $getData->getPostData();
 
-// category_noについて「1だったら食事、2だったら旅行、それ以外であればその他 」と表示
-// $stmt = $pdo->query("SELECT category_no FROM posts");
-// $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
-// foreach($rows as $row) {
-// if($row["category_no"]==1){
-//   echo "食事";
-// }elseif($row["category_no"]==2){
-//   echo "旅行";
-// }else{
-//   echo "その他";
-// }
-// }
+$users_data = $getData->getUserData();
+
+$post_data = $getData->getPostData();
 
 ?>
 

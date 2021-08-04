@@ -34,21 +34,21 @@ try {
 </head>
 <body>
     <h1>在庫一覧画面</h1>
-    <a href="create_books.php" class="btn">新規登録</a>
+    <a href="create_books.php" class="new_user_btn">新規登録</a>
     <a href="logout.php" class="logout_btn">ログアウト</a><br />
-    <table>
+    <table border="1">
         <tr>
-            <td>タイトル</td>
-            <td>発売日</td>
-            <td>在庫数</td>
-            <td></td>
+            <th>タイトル</th>
+            <th>発売日</th>
+            <th>在庫数</th>
+            <th></th>
         </tr>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
             <tr>
                 <td><?php echo $row['title']; ?></td>
                 <td><?php echo $row['date']; ?></td>
                 <td><?php echo $row['stock']; ?></td>
-                <td><a href="delete_books.php?id=<?php echo $row['id']; ?>">削除</a></td>
+                <td><a class="delete_btn" href="delete_books.php?id=<?php echo $row['id']; ?>">削除</a></td>
             </tr>
         <?php } ?>
     </table>

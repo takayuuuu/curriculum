@@ -63,12 +63,14 @@ if (!empty($_POST)) {
         <title>ログインページ</title>
     </head>
     <body>
+      <div id="wrap">
         <h2>ログイン画面</h2>
         <a href="signUp.php" class="user_btn">新規ユーザー登録</a>
         <form method="post" action="">
-          <p><input type="text" name="name" placeholder="ユーザー名"></p>
-          <p><input type="text" name="pass" placeholder="パスワード"></p>
-          <input type="submit" value="ログイン" class="btn">
+          <p><input type="text" name="name" placeholder="ユーザー名" class="login_form"></p>
+          <p><input type="text" name="pass" placeholder="パスワード" class="login_form"></p>
+          <p><input type="submit" value="ログイン" class="btn"></p>
         </form>
+      </div>
     </body>
 </html>

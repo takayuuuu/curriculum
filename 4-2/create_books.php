@@ -15,24 +15,26 @@ if (!empty($_POST)) {
         echo 'タイトルが未入力です。';
     } elseif (empty($_POST["date"])) {
         echo '発売日が未入力です。';
+    } elseif (empty($_POST["stock"])) {  
+        echo '在庫数を選択して下さい';
     }
 
-    if (!empty($_POST["title"]) && !empty($_POST["date"])) {
+    if (!empty($_POST["title"]) && !empty($_POST["date"]) && !empty($_POST["stock"])) {
         $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
         $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
+        $stock = htmlspecialchars($_POST['stock'], ENT_QUOTES);
 
         // PDOのインスタンスを取得
         $pdo = db_connect();
 
         try {
             // SQL文の準備
-            $sql = "INSERT INTO posts (title, date) VALUES (:title, :date)";
+            $sql = "INSERT INTO books (title, date, stock) VALUES (:title, :date, :stock)";
             // プリペアドステートメントの準備
             $stmt = $pdo->prepare($sql);
-            // タイトルをバインド
             $stmt->bindParam(':title', $title);
-            // 本文をバインド
             $stmt->bindParam(':date', $date);
+            $stmt->bindParam(':stock', $stock);
             // 実行
             $stmt->execute();
             // main.phpにリダイレクト
@@ -47,6 +49,8 @@ if (!empty($_POST)) {
         }
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,13 +60,16 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>本 登録画面</h1>
-    <form method="POST" action="">
+  <h1>本 登録画面</h1>
+    <form method="POST" action="" >
         <p><input type="text" name="title" id="title" placeholder="タイトル"></p>
         <p><input type="text" name="date" id="date" placeholder="発売日"></p>
-        在庫数<br>
+        <p>在庫数</p>
         <select name= "stock">
           <option value = "">選択してください</option>
+          <option value = "10">10</option>
+          <option value = "15">15</option>
+          <option value = "20">20</option>
         </select>
         <p><input type="submit" value="登録" id="books" name="books" class="btn"></p>
     </form>

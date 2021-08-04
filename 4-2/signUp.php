@@ -54,7 +54,7 @@ die();
 </head>
 <body>
     <h1>ユーザー登録画面</h1>
-    <form method="POST" action="">
+    <form method="POST" action="main.php">
         <p><input type="text" name="name" id="name" placeholder="ユーザー名"></p>
         <p><input type="password" name="password" id="password" placeholder="パスワード"></p>
         <input type="submit" value="新規登録" id="signUp" name="signUp" class="btn">

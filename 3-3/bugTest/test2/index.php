@@ -1,5 +1,5 @@
 <?php
-// ↓エラーログが出たためコメントアウトした
+// エラーログが出たためコメントアウトした
 // require 'lib/password.php';
 // セッション開始
 session_start();

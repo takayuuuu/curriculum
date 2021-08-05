@@ -8,13 +8,10 @@ $name = $_POST["name"];
 $password = $_POST["password"];
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-// POSTで送られたデータがあった場合
+// POSTで送られたデータがあった場合 
+// nameとpassword両方送られてきたら処理実行
 if (isset($_POST["signUp"])) {
-  if (!empty($_POST['name']) && !empty($_POST['password'])) 
-  
-  
-  
-  // nameとpassword両方送られてきたら処理実行
+    if (!empty($_POST['name']) && !empty($_POST['password'])) 
   
   // PDOのインスタンスを取得FILL_IN
   $pdo = db_connect();

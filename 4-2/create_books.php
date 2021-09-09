@@ -5,12 +5,12 @@ require_once('db_connect.php');
 // function.phpの読み込み
 require_once('function.php');
 
-// ログインしていなければ、login.phpにリダイレクト
+
 check_user_logged_in();
 
-// 提出ボタンが押された場合
+
 if (!empty($_POST)) {
-    // titleとcontentの入力チェック
+    
     if (empty($_POST["title"])) {
         echo 'タイトルが未入力です。';
     } elseif (empty($_POST["date"])) {
@@ -24,7 +24,7 @@ if (!empty($_POST)) {
         $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
         $stock = htmlspecialchars($_POST['stock'], ENT_QUOTES);
 
-        // PDOのインスタンスを取得
+        
         $pdo = db_connect();
 
         try {
@@ -35,16 +35,12 @@ if (!empty($_POST)) {
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':date', $date);
             $stmt->bindParam(':stock', $stock);
-            // 実行
             $stmt->execute();
-            // main.phpにリダイレクト
             header("Location: main.php");
             exit;
-            // redirect_main_unless_parameter($param);
+           
         } catch (PDOException $e) {
-            // エラーメッセージの出力
             echo 'Error: ' . $e->getMessage();
-            // 終了
             die();
         }
     }

@@ -8,10 +8,8 @@ require_once('function.php');
 // ログインしていなければ、login.phpにリダイレクト
 check_user_logged_in();
 
-// URLの?以降で渡されるIDをキャッチ
 $id = $_GET['id'];
-// もし、$idが空であったらmain.phpにリダイレクト
-// 不正なアクセス対策
+
 redirect_main_unless_parameter($id);
 
 // PDOのインスタンスを取得

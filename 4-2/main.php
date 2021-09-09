@@ -7,21 +7,13 @@ require_once('function.php');
 
 // ログインしていなければ、login.phpにリダイレクト
 check_user_logged_in();
-
-// PDOのインスタンスを取得
 $pdo = db_connect();
-
 try {
-    // SQL文の準備
     $sql = "SELECT * FROM books ORDER BY id DESC";
-    // プリペアドステートメントの作成
-    $stmt = $pdo->prepare($sql);
-    // 実行
+    $stmt = $pdo->prepare($sql);  
     $stmt->execute();
 } catch (PDOException $e) {
-    // エラーメッセージの出力
     echo 'Error: ' . $e->getMessage();
-    // 終了
     die();
 }
 ?>

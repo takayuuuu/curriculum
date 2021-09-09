@@ -1,35 +1,23 @@
 <?php
 
-// db_connect.phpの読み込み
 require_once('db_connect.php');
 
-// POSTで送られていれば処理実行
 $name = $_POST["name"];
 $password = $_POST["password"];
-// パスワードをハッシュ化
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-// POSTで送られたデータがあった場合
 if (isset($_POST["signUp"])) {
   if (!empty($_POST['name']) && !empty($_POST['password'])) 
-  
-  // nameとpassword両方送られてきたら処理実行
-  
-  // PDOのインスタンスを取得
-  $pdo = db_connect();
-  
-  try {
-    // SQL文の準備
-    $sql = "INSERT INTO users (name, password) VALUES (:name, :password)";
-    // プリペアドステートメントの作成
-    $stmt = $pdo->prepare($sql);
-    
-// 値をセット 
-$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-// :passwordにバインドする場合は、$password_hashを使用する
-$stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
 
-// 実行 
+$pdo = db_connect();
+  
+try {
+    
+$sql = "INSERT INTO users (name, password) VALUES (:name, :password)";
+    
+$stmt = $pdo->prepare($sql);  
+$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+$stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
 $stmt->execute();
 
 // 登録完了メッセージ出力
@@ -61,3 +49,4 @@ die();
     </form>
 </body>
 </html>
+
